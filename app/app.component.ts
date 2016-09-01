@@ -12,7 +12,6 @@ import { Component } from '@angular/core'
     </header>
 
     <div class="jumbotron">
-      <h1>Get Vulgar!</h1>
       <div *ngFor="let message of messages">
         {{ message.text }}
       </div>
