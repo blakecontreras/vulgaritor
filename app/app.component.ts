@@ -11,9 +11,18 @@ import { Component } from '@angular/core'
       </nav>
     </header>
 
-    <div class="jumbotron">
-      <div *ngFor="let message of messages">
-        {{ message.text }}
+    <div class="row">
+      <div class="col-md-4">
+        <div *ngFor="let adjective of adjectives"
+             (click)="selectAdjective(adjective.text)"
+        >
+          {{ adjective.text }}
+        </div>
+      </div>
+      <div class="jumbotron col-md-8">
+        <div>
+          You {{ message.adjective }} dairy farmer!
+        </div>
       </div>
     </div>
 
@@ -27,12 +36,18 @@ import { Component } from '@angular/core'
 })
 
 export class AppComponent {
-  messages = [
+  adjectives = [
     { id: 1,
-      text: "You fight like a dairy farmer!"
+      text: "pustulent"
     },
     { id: 2,
-      text: "How appropriate, you fight like a cow!"
+      text: "typescripty"
     }
-  ]
+  ],
+  message = {
+    adjective: "",
+  },
+  selectAdjective(adjective) {
+    this.message.adjective = adjective;
+  }
 }

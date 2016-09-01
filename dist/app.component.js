@@ -11,19 +11,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var AppComponent = (function () {
     function AppComponent() {
-        this.messages = [
+        this.adjectives = [
             { id: 1,
-                text: "You fight like a dairy farmer!"
+                text: "pustulent"
             },
             { id: 2,
-                text: "How appropriate, you fight like a cow!"
+                text: "typescripty"
             }
         ];
+        this.message = {
+            adjective: "",
+        };
     }
+    AppComponent.prototype.selectAdjective = function (adjective) {
+        this.message.adjective = adjective;
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app',
-            template: "\n    <header>\n      <nav class=\"navbar\">\n        <div class=\"navbar-header\">\n          <a href=\"/\" class=\"navbar-brand\">The Vulgaritor</a>\n        </div>\n      </nav>\n    </header>\n\n    <div class=\"jumbotron\">\n      <div *ngFor=\"let message of messages\">\n        {{ message.text }}\n      </div>\n    </div>\n\n    <footer class=\"text-center\">\n      &copy; 2016\n    </footer>\n  ",
+            template: "\n    <header>\n      <nav class=\"navbar\">\n        <div class=\"navbar-header\">\n          <a href=\"/\" class=\"navbar-brand\">The Vulgaritor</a>\n        </div>\n      </nav>\n    </header>\n\n    <div class=\"row\">\n      <div class=\"col-md-4\">\n        <div *ngFor=\"let adjective of adjectives\"\n             (click)=\"selectAdjective(adjective.text)\"\n        >\n          {{ adjective.text }}\n        </div>\n      </div>\n      <div class=\"jumbotron col-md-8\">\n        <div>\n          You {{ message.adjective }} dairy farmer!\n        </div>\n      </div>\n    </div>\n\n    <footer class=\"text-center\">\n      &copy; 2016\n    </footer>\n  ",
             styles: ["\n    .jumbotron { box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2); }\n  "]
         }), 
         __metadata('design:paramtypes', [])
