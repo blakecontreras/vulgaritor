@@ -31,7 +31,7 @@ import { Component } from '@angular/core'
         </div>
         </div>
       </div>
-      <div class="jumbotron col-md-8">
+      <div class="jumbotron col-md-8" *ngIf="message.adjective && message.noun">
         <div>
           You {{ message.adjective }} {{ message.noun }}!
         </div>
@@ -65,15 +65,15 @@ export class AppComponent {
     }
   ];
   message = {
-    adjective: "...",
-    noun: ""
+    adjective: null,
+    noun: null
   };
 
-  selectAdjective(adjective: String) {
+  selectAdjective(adjective: string) {
     this.message.adjective = adjective;
   };
 
-  selectNoun(noun: String) {
+  selectNoun(noun: string) {
     this.message.noun = noun;
   }
 }

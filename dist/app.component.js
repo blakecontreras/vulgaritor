@@ -28,8 +28,8 @@ var AppComponent = (function () {
             }
         ];
         this.message = {
-            adjective: "...",
-            noun: ""
+            adjective: null,
+            noun: null
         };
     }
     AppComponent.prototype.selectAdjective = function (adjective) {
@@ -42,7 +42,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app',
-            template: "\n    <header>\n      <nav class=\"navbar\">\n        <div class=\"navbar-header\">\n          <a href=\"/\" class=\"navbar-brand\">The Vulgaritor</a>\n        </div>\n      </nav>\n    </header>\n\n    <div class=\"row\">\n      <div class=\"col-md-4\">\n        <h3 class=\"text-center\">Choose Your Weapon</h3>\n        <div class=\"col-md-6\">\n          <h4>Adjectives</h4>\n            <div *ngFor=\"let adjective of adjectives\"\n                 (click)=\"selectAdjective(adjective.text)\"\n            >\n              {{ adjective.text }}\n            </div>\n          </div>\n        <div class=\"col-md-6\">\n        <h4>Nouns</h4>\n        <div *ngFor=\"let noun of nouns\"\n             (click)=\"selectNoun(noun.text)\"\n        >\n          {{ noun.text }}\n        </div>\n        </div>\n      </div>\n      <div class=\"jumbotron col-md-8\">\n        <div>\n          You {{ message.adjective }} {{ message.noun }}!\n        </div>\n      </div>\n    </div>\n\n    <footer class=\"text-center\">\n      &copy; 2016\n    </footer>\n  ",
+            template: "\n    <header>\n      <nav class=\"navbar\">\n        <div class=\"navbar-header\">\n          <a href=\"/\" class=\"navbar-brand\">The Vulgaritor</a>\n        </div>\n      </nav>\n    </header>\n\n    <div class=\"row\">\n      <div class=\"col-md-4\">\n        <h3 class=\"text-center\">Choose Your Weapon</h3>\n        <div class=\"col-md-6\">\n          <h4>Adjectives</h4>\n            <div *ngFor=\"let adjective of adjectives\"\n                 (click)=\"selectAdjective(adjective.text)\"\n            >\n              {{ adjective.text }}\n            </div>\n          </div>\n        <div class=\"col-md-6\">\n        <h4>Nouns</h4>\n        <div *ngFor=\"let noun of nouns\"\n             (click)=\"selectNoun(noun.text)\"\n        >\n          {{ noun.text }}\n        </div>\n        </div>\n      </div>\n      <div class=\"jumbotron col-md-8\" *ngIf=\"message.adjective && message.noun\">\n        <div>\n          You {{ message.adjective }} {{ message.noun }}!\n        </div>\n      </div>\n    </div>\n\n    <footer class=\"text-center\">\n      &copy; 2016\n    </footer>\n  ",
             styles: ["\n    .jumbotron { box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2); }\n  "]
         }), 
         __metadata('design:paramtypes', [])
