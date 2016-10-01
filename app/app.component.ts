@@ -1,5 +1,9 @@
 import { Component } from '@angular/core'
 
+export class Word {
+
+}
+
 @Component({
   selector: 'app',
   template: `
@@ -17,7 +21,9 @@ import { Component } from '@angular/core'
         <div class="col-md-6">
           <h4>Adjectives</h4>
             <div *ngFor="let adjective of adjectives"
-                 (click)="selectAdjective(adjective.text)"
+                 (click)="selectWord($event, adjective, 'adjective')"
+                 style="cursor:pointer;"
+                 [class.bg-primary]="adjective.selected"
             >
               {{ adjective.text }}
             </div>
@@ -25,15 +31,17 @@ import { Component } from '@angular/core'
         <div class="col-md-6">
         <h4>Nouns</h4>
         <div *ngFor="let noun of nouns"
-             (click)="selectNoun(noun.text)"
+             (click)="selectWord($event, noun, 'noun')"
+             style="cursor:pointer;"
+             [class.bg-primary]="noun.selected"
         >
           {{ noun.text }}
         </div>
         </div>
       </div>
-      <div class="jumbotron col-md-8" *ngIf="message.adjective && message.noun">
+      <div class="jumbotron col-md-8" *ngIf="selectedAdjective.text && selectedNoun.text">
         <div>
-          You {{ message.adjective }} {{ message.noun }}!
+          You {{ selectedAdjective.text }} {{ selectedNoun.text }}!
         </div>
       </div>
     </div>
@@ -49,31 +57,40 @@ import { Component } from '@angular/core'
 
 export class AppComponent {
   adjectives = [
-    { id: 1,
-      text: "pustulent"
+    { id: 0,
+      text: "pustulent",
+      selected: false
     },
-    { id: 2,
-      text: "typescripty"
+    { id: 1,
+      text: "typescripty",
+      selected: false
     }
   ];
   nouns = [
-    { id: 1,
-      text: "dairy farmer"
+    { id: 0,
+      text: "dairy farmer",
+      selected: false
     },
-    { id: 2,
-      text: "cow"
+    { id: 1,
+      text: "cow",
+      selected: false
     }
   ];
-  message = {
-    adjective: null,
-    noun: null
-  };
+  selectedAdjective = {text: null, selected: null};
+  selectedNoun = {text: null, selected: null};
 
-  selectAdjective(adjective: string) {
-    this.message.adjective = adjective;
+  selectWord(event, word, wordType) {
+    if (wordType === 'adjective') {
+      if (this.selectedAdjective.selected !== null) {
+        this.selectedAdjective.selected = !this.selectedAdjective.selected;
+      }
+      this.selectedAdjective = word;
+    } else if (wordType === 'noun') {
+      if (this.selectedNoun.selected !== null) {
+        this.selectedNoun.selected = !this.selectedNoun.selected;
+      }
+      this.selectedNoun = word;
+    }
+    word.selected = !word.selected;
   };
-
-  selectNoun(noun: string) {
-    this.message.noun = noun;
-  }
 }

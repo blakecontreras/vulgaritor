@@ -9,40 +9,57 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var Word = (function () {
+    function Word() {
+    }
+    return Word;
+}());
+exports.Word = Word;
 var AppComponent = (function () {
     function AppComponent() {
         this.adjectives = [
-            { id: 1,
-                text: "pustulent"
+            { id: 0,
+                text: "pustulent",
+                selected: false
             },
-            { id: 2,
-                text: "typescripty"
+            { id: 1,
+                text: "typescripty",
+                selected: false
             }
         ];
         this.nouns = [
-            { id: 1,
-                text: "dairy farmer"
+            { id: 0,
+                text: "dairy farmer",
+                selected: false
             },
-            { id: 2,
-                text: "cow"
+            { id: 1,
+                text: "cow",
+                selected: false
             }
         ];
-        this.message = {
-            adjective: null,
-            noun: null
-        };
+        this.selectedAdjective = { text: null, selected: null };
+        this.selectedNoun = { text: null, selected: null };
     }
-    AppComponent.prototype.selectAdjective = function (adjective) {
-        this.message.adjective = adjective;
+    AppComponent.prototype.selectWord = function (event, word, wordType) {
+        if (wordType === 'adjective') {
+            if (this.selectedAdjective.selected !== null) {
+                this.selectedAdjective.selected = !this.selectedAdjective.selected;
+            }
+            this.selectedAdjective = word;
+        }
+        else if (wordType === 'noun') {
+            if (this.selectedNoun.selected !== null) {
+                this.selectedNoun.selected = !this.selectedNoun.selected;
+            }
+            this.selectedNoun = word;
+        }
+        word.selected = !word.selected;
     };
     ;
-    AppComponent.prototype.selectNoun = function (noun) {
-        this.message.noun = noun;
-    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app',
-            template: "\n    <header>\n      <nav class=\"navbar\">\n        <div class=\"navbar-header\">\n          <a href=\"/\" class=\"navbar-brand\">The Vulgaritor</a>\n        </div>\n      </nav>\n    </header>\n\n    <div class=\"row\">\n      <div class=\"col-md-4\">\n        <h3 class=\"text-center\">Choose Your Weapon</h3>\n        <div class=\"col-md-6\">\n          <h4>Adjectives</h4>\n            <div *ngFor=\"let adjective of adjectives\"\n                 (click)=\"selectAdjective(adjective.text)\"\n            >\n              {{ adjective.text }}\n            </div>\n          </div>\n        <div class=\"col-md-6\">\n        <h4>Nouns</h4>\n        <div *ngFor=\"let noun of nouns\"\n             (click)=\"selectNoun(noun.text)\"\n        >\n          {{ noun.text }}\n        </div>\n        </div>\n      </div>\n      <div class=\"jumbotron col-md-8\" *ngIf=\"message.adjective && message.noun\">\n        <div>\n          You {{ message.adjective }} {{ message.noun }}!\n        </div>\n      </div>\n    </div>\n\n    <footer class=\"text-center\">\n      &copy; 2016\n    </footer>\n  ",
+            template: "\n    <header>\n      <nav class=\"navbar\">\n        <div class=\"navbar-header\">\n          <a href=\"/\" class=\"navbar-brand\">The Vulgaritor</a>\n        </div>\n      </nav>\n    </header>\n\n    <div class=\"row\">\n      <div class=\"col-md-4\">\n        <h3 class=\"text-center\">Choose Your Weapon</h3>\n        <div class=\"col-md-6\">\n          <h4>Adjectives</h4>\n            <div *ngFor=\"let adjective of adjectives\"\n                 (click)=\"selectWord($event, adjective, 'adjective')\"\n                 style=\"cursor:pointer;\"\n                 [class.bg-primary]=\"adjective.selected\"\n            >\n              {{ adjective.text }}\n            </div>\n          </div>\n        <div class=\"col-md-6\">\n        <h4>Nouns</h4>\n        <div *ngFor=\"let noun of nouns\"\n             (click)=\"selectWord($event, noun, 'noun')\"\n             style=\"cursor:pointer;\"\n             [class.bg-primary]=\"noun.selected\"\n        >\n          {{ noun.text }}\n        </div>\n        </div>\n      </div>\n      <div class=\"jumbotron col-md-8\" *ngIf=\"selectedAdjective.text && selectedNoun.text\">\n        <div>\n          You {{ selectedAdjective.text }} {{ selectedNoun.text }}!\n        </div>\n      </div>\n    </div>\n\n    <footer class=\"text-center\">\n      &copy; 2016\n    </footer>\n  ",
             styles: ["\n    .jumbotron { box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2); }\n  "]
         }), 
         __metadata('design:paramtypes', [])
