@@ -37,10 +37,10 @@ var AppComponent = (function () {
                 selected: false
             }
         ];
-        this.selectedAdjective = { text: null, selected: null };
-        this.selectedNoun = { text: null, selected: null };
+        this.selectedAdjective = { id: null, text: null, selected: null };
+        this.selectedNoun = { id: null, text: null, selected: null };
     }
-    AppComponent.prototype.selectWord = function (event, word, wordType) {
+    AppComponent.prototype.selectWord = function (word, wordType) {
         if (wordType === 'adjective') {
             if (this.selectedAdjective.selected !== null) {
                 this.selectedAdjective.selected = !this.selectedAdjective.selected;
@@ -59,7 +59,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app',
-            template: "\n    <header>\n      <nav class=\"navbar\">\n        <div class=\"navbar-header\">\n          <a href=\"/\" class=\"navbar-brand\">The Vulgaritor</a>\n        </div>\n      </nav>\n    </header>\n\n    <div class=\"row\">\n      <div class=\"col-md-4\">\n        <h3 class=\"text-center\">Choose Your Weapon</h3>\n        <div class=\"col-md-6\">\n          <h4>Adjectives</h4>\n            <div *ngFor=\"let adjective of adjectives\"\n                 (click)=\"selectWord($event, adjective, 'adjective')\"\n                 style=\"cursor:pointer;\"\n                 [class.bg-primary]=\"adjective.selected\"\n            >\n              {{ adjective.text }}\n            </div>\n          </div>\n        <div class=\"col-md-6\">\n        <h4>Nouns</h4>\n        <div *ngFor=\"let noun of nouns\"\n             (click)=\"selectWord($event, noun, 'noun')\"\n             style=\"cursor:pointer;\"\n             [class.bg-primary]=\"noun.selected\"\n        >\n          {{ noun.text }}\n        </div>\n        </div>\n      </div>\n      <div class=\"jumbotron col-md-8\" *ngIf=\"selectedAdjective.text && selectedNoun.text\">\n        <div>\n          You {{ selectedAdjective.text }} {{ selectedNoun.text }}!\n        </div>\n      </div>\n    </div>\n\n    <footer class=\"text-center\">\n      &copy; 2016\n    </footer>\n  ",
+            template: "\n    <header>\n      <nav class=\"navbar\">\n        <div class=\"navbar-header\">\n          <a href=\"/\" class=\"navbar-brand\">The Vulgaritor</a>\n        </div>\n      </nav>\n    </header>\n\n    <div class=\"row\">\n      <div class=\"col-md-4\">\n        <h3 class=\"text-center\">Choose Your Weapon</h3>\n        <div class=\"col-md-6\">\n          <h4>Adjectives</h4>\n            <div *ngFor=\"let adjective of adjectives\"\n                 (click)=\"selectWord(adjective, 'adjective')\"\n                 style=\"cursor:pointer;\"\n                 [class.bg-primary]=\"adjective.selected\"\n            >\n              {{ adjective.text }}\n            </div>\n          </div>\n        <div class=\"col-md-6\">\n        <h4>Nouns</h4>\n        <div *ngFor=\"let noun of nouns\"\n             (click)=\"selectWord(noun, 'noun')\"\n             style=\"cursor:pointer;\"\n             [class.bg-primary]=\"noun.selected\"\n        >\n          {{ noun.text }}\n        </div>\n        </div>\n      </div>\n      <div class=\"jumbotron col-md-8\" *ngIf=\"selectedAdjective.text && selectedNoun.text\">\n        <div>\n          You {{ selectedAdjective.text }} {{ selectedNoun.text }}!\n        </div>\n      </div>\n    </div>\n\n    <footer class=\"text-center\">\n      &copy; 2016\n    </footer>\n  ",
             styles: ["\n    .jumbotron { box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2); }\n  "]
         }), 
         __metadata('design:paramtypes', [])

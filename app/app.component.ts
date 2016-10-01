@@ -1,7 +1,9 @@
 import { Component } from '@angular/core'
 
 export class Word {
-
+  id: number;
+  text: string;
+  selected: boolean;
 }
 
 @Component({
@@ -21,7 +23,7 @@ export class Word {
         <div class="col-md-6">
           <h4>Adjectives</h4>
             <div *ngFor="let adjective of adjectives"
-                 (click)="selectWord($event, adjective, 'adjective')"
+                 (click)="selectWord(adjective, 'adjective')"
                  style="cursor:pointer;"
                  [class.bg-primary]="adjective.selected"
             >
@@ -31,7 +33,7 @@ export class Word {
         <div class="col-md-6">
         <h4>Nouns</h4>
         <div *ngFor="let noun of nouns"
-             (click)="selectWord($event, noun, 'noun')"
+             (click)="selectWord(noun, 'noun')"
              style="cursor:pointer;"
              [class.bg-primary]="noun.selected"
         >
@@ -56,7 +58,7 @@ export class Word {
 })
 
 export class AppComponent {
-  adjectives = [
+  adjectives: Word[] = [
     { id: 0,
       text: "pustulent",
       selected: false
@@ -66,7 +68,7 @@ export class AppComponent {
       selected: false
     }
   ];
-  nouns = [
+  nouns: Word[] = [
     { id: 0,
       text: "dairy farmer",
       selected: false
@@ -76,10 +78,10 @@ export class AppComponent {
       selected: false
     }
   ];
-  selectedAdjective = {text: null, selected: null};
-  selectedNoun = {text: null, selected: null};
+  selectedAdjective: Word = {id: null, text: null, selected: null};
+  selectedNoun: Word = {id: null, text: null, selected: null};
 
-  selectWord(event, word, wordType) {
+  selectWord(word: Word, wordType: string) {
     if (wordType === 'adjective') {
       if (this.selectedAdjective.selected !== null) {
         this.selectedAdjective.selected = !this.selectedAdjective.selected;
