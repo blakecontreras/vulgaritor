@@ -1,10 +1,5 @@
 import { Component } from '@angular/core'
-
-export class Word {
-  id: number;
-  text: string;
-  selected: boolean;
-}
+import { Word } from './shared/models/word.ts'
 
 @Component({
   selector: 'app',
