@@ -5,15 +5,15 @@ import { Word } from '../shared/models/word'
   selector: 'add-word',
   styles: [`
     form { 
-      padding: 10px;
+      padding: 5px;
       background: #ECF0F1;
-      border-radius: 3px;
+      border-radius: 2px;
     }
   `],
   template: `
   <div class="jumbotron">
     <form #form="ngForm" (ngSubmit)="handleSubmit()" *ngIf="active">
-    <h3>Add a Word</h3>
+    <h4>Add Words Here!</h4>
       <div class="form-group">
         <input type="text" class="form-control" name="adjective" placeholder="Adjective"
         [(ngModel)]="newAdjective.text" #text="ngModel">

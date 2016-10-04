@@ -33,8 +33,8 @@ var AddWordComponent = (function () {
     AddWordComponent = __decorate([
         core_1.Component({
             selector: 'add-word',
-            styles: ["\n    form { \n      padding: 10px;\n      background: #ECF0F1;\n      border-radius: 3px;\n    }\n  "],
-            template: "\n  <div class=\"jumbotron\">\n    <form #form=\"ngForm\" (ngSubmit)=\"handleSubmit()\" *ngIf=\"active\">\n    <h3>Add a Word</h3>\n      <div class=\"form-group\">\n        <input type=\"text\" class=\"form-control\" name=\"adjective\" placeholder=\"Adjective\"\n        [(ngModel)]=\"newAdjective.text\" #text=\"ngModel\">\n      </div>\n\n      <div class=\"form-group\">\n        <input type=\"text\" class=\"form-control\" name=\"noun\" placeholder=\"Noun\"\n        [(ngModel)]=\"newNoun.text\" #text=\"ngModel\">\n      </div>\n\n      <button type=\"submit\" class=\"btn btn-lg btn-block btn-primary\"\n>\n        Add Word(s)\n      </button>\n    </form>\n  </div>\n  "
+            styles: ["\n    form { \n      padding: 5px;\n      background: #ECF0F1;\n      border-radius: 2px;\n    }\n  "],
+            template: "\n  <div class=\"jumbotron\">\n    <form #form=\"ngForm\" (ngSubmit)=\"handleSubmit()\" *ngIf=\"active\">\n    <h4>Add Words Here!</h4>\n      <div class=\"form-group\">\n        <input type=\"text\" class=\"form-control\" name=\"adjective\" placeholder=\"Adjective\"\n        [(ngModel)]=\"newAdjective.text\" #text=\"ngModel\">\n      </div>\n\n      <div class=\"form-group\">\n        <input type=\"text\" class=\"form-control\" name=\"noun\" placeholder=\"Noun\"\n        [(ngModel)]=\"newNoun.text\" #text=\"ngModel\">\n      </div>\n\n      <button type=\"submit\" class=\"btn btn-lg btn-block btn-primary\"\n>\n        Add Word(s)\n      </button>\n    </form>\n  </div>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], AddWordComponent);

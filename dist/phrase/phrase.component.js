@@ -24,7 +24,8 @@ var PhraseComponent = (function () {
     PhraseComponent = __decorate([
         core_1.Component({
             selector: 'phrase',
-            template: "\n    <div class=\"jumbotron col-md-8\">\n      <div>\n        You {{ adjective.text }} {{ noun.text }}!\n      </div>\n    </div>\n  "
+            template: "\n    <div class=\"jumbotron col-md-8\">\n      <div>\n        <h2>You {{ adjective.text }} {{ noun.text }}!</h2>\n      </div>\n    </div>\n  ",
+            styles: ["\n    .jumbotron { margin-top: 30px; }\n  "]
         }), 
         __metadata('design:paramtypes', [])
     ], PhraseComponent);

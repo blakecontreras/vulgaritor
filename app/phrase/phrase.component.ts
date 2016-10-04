@@ -6,10 +6,13 @@ import { Word } from '../shared/models/word'
   template:`
     <div class="jumbotron col-md-8">
       <div>
-        You {{ adjective.text }} {{ noun.text }}!
+        <h2>You {{ adjective.text }} {{ noun.text }}!</h2>
       </div>
     </div>
-  `
+  `,
+  styles: [`
+    .jumbotron { margin-top: 30px; }
+  `]
 })
 
 export class PhraseComponent {
