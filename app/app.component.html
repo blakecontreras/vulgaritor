@@ -1,0 +1,38 @@
+<header>
+  <nav class="navbar">
+    <div class="navbar-header">
+      <a href="/" class="navbar-brand">The Vulgaritor</a>
+    </div>
+  </nav>
+</header>
+
+<div class="row">
+  <div class="col-md-4">
+    <h3 class="text-center">Choose Your Weapon</h3>
+    <div class="col-md-6">
+      <h4>Adjectives</h4>
+        <div *ngFor="let adjective of adjectives"
+              (click)="selectWord(adjective, 'adjective')"
+              style="cursor:pointer;"
+              [class.bg-primary]="adjective.selected"
+        >
+          {{ adjective.text }}
+        </div>
+      </div>
+    <div class="col-md-6">
+    <h4>Nouns</h4>
+    <div *ngFor="let noun of nouns"
+          (click)="selectWord(noun, 'noun')"
+          style="cursor:pointer;"
+          [class.bg-primary]="noun.selected"
+    >
+      {{ noun.text }}
+    </div>
+    </div>
+  </div>
+  <phrase [adjective]="selectedAdjective" [noun]="selectedNoun"></phrase>
+</div>
+
+<footer class="text-center">
+  &copy; 2016
+</footer>
