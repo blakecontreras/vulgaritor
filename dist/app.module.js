@@ -13,6 +13,7 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var app_component_1 = require('./app.component');
 var phrase_component_1 = require('./phrase/phrase.component');
+var add_word_component_1 = require('./words/add-word.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -24,7 +25,8 @@ var AppModule = (function () {
             ],
             declarations: [
                 app_component_1.AppComponent,
-                phrase_component_1.PhraseComponent
+                phrase_component_1.PhraseComponent,
+                add_word_component_1.AddWordComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
