@@ -11,6 +11,7 @@ import { Word } from '../shared/models/word'
     }
   `],
   template: `
+  <div class="jumbotron">
     <form #form="ngForm" (ngSubmit)="handleSubmit()" *ngIf="active">
     <h3>Add a Word</h3>
       <div class="form-group">
@@ -28,15 +29,18 @@ import { Word } from '../shared/models/word'
         Add Word(s)
       </button>
     </form>
+  </div>
   `
 })
 
 export class AddWordComponent {
+  @Output() wordAdded = new EventEmitter();
   newAdjective: Word = new Word();
   newNoun: Word = new Word();
   active: boolean = true;
 
   handleSubmit() {
+    this.wordAdded.emit({ adjective: this.newAdjective, noun: this.newNoun });
     console.log("Adjective: ", this.newAdjective, " Noun: ", this.newNoun)
 
     this.newAdjective = new Word();

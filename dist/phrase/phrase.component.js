@@ -24,7 +24,7 @@ var PhraseComponent = (function () {
     PhraseComponent = __decorate([
         core_1.Component({
             selector: 'phrase',
-            template: "\n    <div class=\"jumbotron col-md-8\" *ngIf=\"adjective.text && noun.text\">\n      <div>\n        You {{ adjective.text }} {{ noun.text }}!\n      </div>\n    </div>\n  "
+            template: "\n    <div class=\"jumbotron col-md-8\">\n      <div>\n        You {{ adjective.text }} {{ noun.text }}!\n      </div>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], PhraseComponent);

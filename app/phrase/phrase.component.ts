@@ -4,7 +4,7 @@ import { Word } from '../shared/models/word'
 @Component ({
   selector: 'phrase',
   template:`
-    <div class="jumbotron col-md-8" *ngIf="adjective.text && noun.text">
+    <div class="jumbotron col-md-8">
       <div>
         You {{ adjective.text }} {{ noun.text }}!
       </div>

@@ -29,9 +29,11 @@
       {{ noun.text }}
     </div>
     </div>
-    <add-word (wordAdded)="onWordAdded($event)"></add-word>
   </div>
   <phrase [adjective]="selectedAdjective" [noun]="selectedNoun"></phrase>
+  <div class="col-md-8 pull-right">
+    <add-word (wordAdded)="onWordAdded($event)"></add-word>
+  </div>
 </div>
 
 <footer class="text-center">
