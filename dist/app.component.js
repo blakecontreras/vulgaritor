@@ -9,8 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var word_service_1 = require('./shared/services/word.service');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(wordService) {
+        this.wordService = wordService;
         this.adjectives = [
             { id: 0,
                 text: "pustulent",
@@ -88,6 +90,7 @@ var AppComponent = (function () {
             this.selectedNoun = word;
         }
         word.selected = !word.selected;
+        console.log(this.wordService.getWords());
     };
     ;
     AppComponent.prototype.onWordAdded = function (event) {
@@ -102,9 +105,10 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'app',
             templateUrl: './app/app.component.html',
-            styleUrls: ['./app/app.component.css']
+            styleUrls: ['./app/app.component.css'],
+            providers: [word_service_1.WordService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [word_service_1.WordService])
     ], AppComponent);
     return AppComponent;
 }());

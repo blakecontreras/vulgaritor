@@ -1,13 +1,17 @@
 import { Component } from '@angular/core'
-import { Word } from './shared/models/word.ts'
+import { Word } from './shared/models/word'
+import { WordService } from './shared/services/word.service'
 
 @Component({
   selector: 'app',
   templateUrl: './app/app.component.html',
-  styleUrls: ['./app/app.component.css']
+  styleUrls: ['./app/app.component.css'],
+  providers: [WordService]
 })
 
 export class AppComponent {
+  constructor(private wordService: WordService) {}
+
   adjectives: Word[] = [
     { id: 0,
       text: "pustulent",
@@ -67,7 +71,7 @@ export class AppComponent {
       text: "submariner",
       selected: false
     },
-    
+
   ];
   selectedAdjective: Word = {id: null, text: "...", selected: null};
   selectedNoun: Word = {id: null, text: "...", selected: null};
@@ -85,6 +89,8 @@ export class AppComponent {
       this.selectedNoun = word;
     }
     word.selected = !word.selected;
+
+    console.log(this.wordService.getWords());
   };
 
   onWordAdded(event) {

@@ -9,30 +9,106 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var word_service_1 = require('./shared/services/word.service');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(wordService) {
+        this.wordService = wordService;
         this.adjectives = [
+            { id: 0,
+                text: "pustulent",
+                selected: false
+            },
             { id: 1,
-                text: "pustulent"
+                text: "cantankerous",
+                selected: false
             },
             { id: 2,
-                text: "typescripty"
-            }
+                text: "poxy",
+                selected: false
+            },
+            { id: 3,
+                text: "indolent",
+                selected: false
+            },
+            { id: 4,
+                text: "shiftless",
+                selected: false
+            },
+            { id: 5,
+                text: "typescripty",
+                selected: false
+            },
+            { id: 6,
+                text: "boorish",
+                selected: false
+            },
         ];
-        this.message = {
-            adjective: "",
-        };
+        this.nouns = [
+            { id: 0,
+                text: "dairy farmer",
+                selected: false
+            },
+            { id: 1,
+                text: "cow",
+                selected: false
+            },
+            { id: 2,
+                text: "pirate",
+                selected: false
+            },
+            { id: 3,
+                text: "pig",
+                selected: false
+            },
+            { id: 4,
+                text: "jockey",
+                selected: false
+            },
+            { id: 5,
+                text: "weasel",
+                selected: false
+            },
+            { id: 6,
+                text: "submariner",
+                selected: false
+            },
+        ];
+        this.selectedAdjective = { id: null, text: "...", selected: null };
+        this.selectedNoun = { id: null, text: "...", selected: null };
     }
-    AppComponent.prototype.selectAdjective = function (adjective) {
-        this.message.adjective = adjective;
+    AppComponent.prototype.selectWord = function (word, wordType) {
+        if (wordType === 'adjective') {
+            if (this.selectedAdjective.selected !== null) {
+                this.selectedAdjective.selected = !this.selectedAdjective.selected;
+            }
+            this.selectedAdjective = word;
+        }
+        else if (wordType === 'noun') {
+            if (this.selectedNoun.selected !== null) {
+                this.selectedNoun.selected = !this.selectedNoun.selected;
+            }
+            this.selectedNoun = word;
+        }
+        word.selected = !word.selected;
+        console.log(this.wordService.getWords());
+    };
+    ;
+    AppComponent.prototype.onWordAdded = function (event) {
+        if (event.adjective.text) {
+            this.adjectives.push(event.adjective);
+        }
+        if (event.noun.text) {
+            this.nouns.push(event.noun);
+        }
     };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app',
-            template: "\n    <header>\n      <nav class=\"navbar\">\n        <div class=\"navbar-header\">\n          <a href=\"/\" class=\"navbar-brand\">The Vulgaritor</a>\n        </div>\n      </nav>\n    </header>\n\n    <div class=\"row\">\n      <div class=\"col-md-4\">\n        <div *ngFor=\"let adjective of adjectives\"\n             (click)=\"selectAdjective(adjective.text)\"\n        >\n          {{ adjective.text }}\n        </div>\n      </div>\n      <div class=\"jumbotron col-md-8\">\n        <div>\n          You {{ message.adjective }} dairy farmer!\n        </div>\n      </div>\n    </div>\n\n    <footer class=\"text-center\">\n      &copy; 2016\n    </footer>\n  ",
-            styles: ["\n    .jumbotron { box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2); }\n  "]
+            templateUrl: './app/app.component.html',
+            styleUrls: ['./app/app.component.css'],
+            providers: [word_service_1.WordService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [word_service_1.WordService])
     ], AppComponent);
     return AppComponent;
 }());
