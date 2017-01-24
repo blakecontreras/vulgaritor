@@ -5,8 +5,7 @@ import { WordService } from './shared/services/word.service'
 @Component({
   selector: 'app',
   templateUrl: './app/app.component.html',
-  styleUrls: ['./app/app.component.css'],
-  providers: [WordService]
+  styleUrls: ['./app/app.component.css']
 })
 
 export class AppComponent implements OnInit {
@@ -42,10 +41,10 @@ export class AppComponent implements OnInit {
 
   onWordAdded(event) {
     if (event.adjective.text) {
-      this.adjectives.push(event.adjective)
+      this.adjectives.push(event.adjective);
     }
     if (event.noun.text) {
-      this.nouns.push(event.noun)
+      this.nouns.push(event.noun);
     }
   }
 }

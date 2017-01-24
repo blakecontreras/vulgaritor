@@ -1,5 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core'
 import { Word } from '../shared/models/word'
+import { WordService } from '../shared/services/word.service'
+
 
 @Component({
   selector: 'add-word',
