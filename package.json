@@ -9,7 +9,9 @@
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "typings": "typings",
-    "postinstall": "typings install"
+    "postinstall": "typings install",
+    "dev": "tsc && concurrently \"npm run tsc:w\" \"npm run server\"",
+    "server": "nodemon server.js"
   },
   "keywords": [],
   "author": "Blake Contreras",

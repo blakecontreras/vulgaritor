@@ -12,8 +12,8 @@ export class WordService {
 
   constructor(private http: Http) {}
 
-  getWords(): Observable<Word[]> {
+  getWords() {
     return this.http.get(this.wordsUrl)
-                    .map((res: Response) => res.json().data);
+      .map(data => data.json());
   }
 }

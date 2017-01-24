@@ -20,6 +20,7 @@ app.get('/words', (req, res) => {
 
 app.post('/addWord', (req, res) => {
   console.log('Post request to /addWord')
+  console.log(req.body);
   words.addWord(req.body)
   .then((data) => res.send(data));
 })
