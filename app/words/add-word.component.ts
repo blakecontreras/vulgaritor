@@ -48,7 +48,6 @@ export class AddWordComponent {
       .subscribe(words => {
         this.wordAdded.emit({ adjectives: words[0], nouns: words[1] });
       })
-    console.log("Adjective: ", this.newAdjective, " Noun: ", this.newNoun)
 
     this.newAdjective = new Word();
     this.newNoun = new Word();
