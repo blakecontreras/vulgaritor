@@ -25,7 +25,6 @@ var AddWordComponent = (function () {
             .subscribe(function (words) {
             _this.wordAdded.emit({ adjectives: words[0], nouns: words[1] });
         });
-        console.log("Adjective: ", this.newAdjective, " Noun: ", this.newNoun);
         this.newAdjective = new word_1.Word();
         this.newNoun = new word_1.Word();
         this.active = false;
