@@ -10,16 +10,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+var Rx_1 = require('rxjs/Rx');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/catch');
 var WordService = (function () {
     function WordService(http) {
         this.http = http;
         this.wordsUrl = 'http://localhost:8000/words';
+        this.addWordUrl = 'http://localhost:8000/addWord';
     }
     WordService.prototype.getWords = function () {
         return this.http.get(this.wordsUrl)
-            .map(function (res) { return res.json().data; });
+            .map(function (data) { return data.json(); })
+            .catch(this.handleError);
+    };
+    WordService.prototype.addWords = function (words) {
+        return this.http.post(this.addWordUrl, words)
+            .map(function (data) { return data.json(); })
+            .catch(this.handleError);
+    };
+    WordService.prototype.handleError = function (err) {
+        var errMessage;
+        if (err instanceof http_1.Response) {
+            var body = err.json() || '';
+            var error = body.error || JSON.stringify(body);
+            errMessage = err.status + " - " + err.statusText + " || ''} " + error;
+        }
+        else {
+            errMessage = err.message ? err.message : err.toString();
+        }
+        return Rx_1.Observable.throw(errMessage);
     };
     WordService = __decorate([
         core_1.Injectable(), 

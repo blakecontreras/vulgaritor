@@ -13,69 +13,17 @@ var word_service_1 = require('./shared/services/word.service');
 var AppComponent = (function () {
     function AppComponent(wordService) {
         this.wordService = wordService;
-        this.adjectives = [
-            { id: 0,
-                text: "pustulent",
-                selected: false
-            },
-            { id: 1,
-                text: "cantankerous",
-                selected: false
-            },
-            { id: 2,
-                text: "poxy",
-                selected: false
-            },
-            { id: 3,
-                text: "indolent",
-                selected: false
-            },
-            { id: 4,
-                text: "shiftless",
-                selected: false
-            },
-            { id: 5,
-                text: "typescripty",
-                selected: false
-            },
-            { id: 6,
-                text: "boorish",
-                selected: false
-            },
-        ];
-        this.nouns = [
-            { id: 0,
-                text: "dairy farmer",
-                selected: false
-            },
-            { id: 1,
-                text: "cow",
-                selected: false
-            },
-            { id: 2,
-                text: "pirate",
-                selected: false
-            },
-            { id: 3,
-                text: "pig",
-                selected: false
-            },
-            { id: 4,
-                text: "jockey",
-                selected: false
-            },
-            { id: 5,
-                text: "weasel",
-                selected: false
-            },
-            { id: 6,
-                text: "submariner",
-                selected: false
-            },
-        ];
         this.selectedAdjective = { id: null, text: "...", selected: null };
         this.selectedNoun = { id: null, text: "...", selected: null };
     }
+    AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.wordService.getWords()
+            .subscribe(function (words) {
+            _this.adjectives = words[0];
+            _this.nouns = words[1];
+        });
+    };
     AppComponent.prototype.selectWord = function (word, wordType) {
         if (wordType === 'adjective') {
             if (this.selectedAdjective.selected !== null) {
@@ -90,23 +38,17 @@ var AppComponent = (function () {
             this.selectedNoun = word;
         }
         word.selected = !word.selected;
-        console.log(this.wordService.getWords());
     };
     ;
     AppComponent.prototype.onWordAdded = function (event) {
-        if (event.adjective.text) {
-            this.adjectives.push(event.adjective);
-        }
-        if (event.noun.text) {
-            this.nouns.push(event.noun);
-        }
+        this.adjectives = event.adjectives;
+        this.nouns = event.nouns;
     };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app',
             templateUrl: './app/app.component.html',
-            styleUrls: ['./app/app.component.css'],
-            providers: [word_service_1.WordService]
+            styleUrls: ['./app/app.component.css']
         }), 
         __metadata('design:paramtypes', [word_service_1.WordService])
     ], AppComponent);
