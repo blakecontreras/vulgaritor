@@ -8,8 +8,8 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class WordService {
-  wordsUrl = 'http://localhost:8000/words';
-  addWordUrl = 'http://localhost:8000/addWord';
+  private wordsUrl: string = 'http://localhost:8000/words';
+  private addWordUrl: string = 'http://localhost:8000/addWord';
 
   constructor(private http: Http) {}
 
