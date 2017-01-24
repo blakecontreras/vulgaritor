@@ -66,7 +66,16 @@ module.exports = {
     nouns
   ],
   addWord(data) {
-    console.log(data);
-    Promise.resolve(this.words);
+    let lastAdjective = adjectives.length - 1;
+    let lastNoun = nouns.length - 1;
+    if (data.adjective) {
+      data.adjective.id = lastAdjective + 1;
+      adjectives.push(data.adjective);
+    }
+    if (data.noun) {
+      data.noun.id = lastNoun + 1;
+      nouns.push(data.noun);
+    }
+    return Promise.resolve(this.words);
   }
 }

@@ -9,11 +9,32 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class WordService {
   wordsUrl = 'http://localhost:8000/words';
+  addWordUrl = 'http://localhost:8000/addWord';
 
   constructor(private http: Http) {}
 
-  getWords() {
+  getWords(): Observable<Array<Word>[]>{
     return this.http.get(this.wordsUrl)
-      .map(data => data.json());
+      .map(data => data.json())
+      .catch(this.handleError);  
+  }
+
+  addWords(words: Object): Observable<Word[]>{
+    return this.http.post(this.addWordUrl, words)
+      .map(data => data.json())
+      .catch(this.handleError);
+  }
+
+  private handleError(err) {
+    let errMessage: string;
+
+    if (err instanceof Response) {
+      let body = err.json() || '';
+      let error = body.error || JSON.stringify(body);
+      errMessage = `${err.status} - ${err.statusText} || ''} ${error}`;
+    } else {
+      errMessage = err.message ? err.message : err.toString();
+    }
+    return Observable.throw(errMessage);
   }
 }

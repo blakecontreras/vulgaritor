@@ -40,11 +40,7 @@ export class AppComponent implements OnInit {
   };
 
   onWordAdded(event) {
-    if (event.adjective.text) {
-      this.adjectives.push(event.adjective);
-    }
-    if (event.noun.text) {
-      this.nouns.push(event.noun);
-    }
+    this.adjectives = event.adjectives;
+    this.nouns = event.nouns;
   }
 }

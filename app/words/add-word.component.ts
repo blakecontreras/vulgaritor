@@ -41,8 +41,13 @@ export class AddWordComponent {
   newNoun: Word = new Word();
   active: boolean = true;
 
+  constructor(private wordService: WordService) {}
+
   handleSubmit() {
-    this.wordAdded.emit({ adjective: this.newAdjective, noun: this.newNoun });
+    this.wordService.addWords({ adjective: this.newAdjective, noun: this.newNoun })
+      .subscribe(words => {
+        this.wordAdded.emit({ adjectives: words[0], nouns: words[1] });
+      })
     console.log("Adjective: ", this.newAdjective, " Noun: ", this.newNoun)
 
     this.newAdjective = new Word();
